@@ -46,7 +46,17 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        //customes
+        $this->mapSudoRoutes();
+
+        $this->mapAdminRoutes();
+
+        $this->mapPemdesRoutes();
+
+        $this->mapBumdesRoutes();
+
+        $this->mapMemberRoutes();
+
     }
 
     /**
@@ -63,6 +73,44 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/web.php'));
     }
 
+    protected function mapSudoRoutes()
+    {
+        Route::prefix('sudo')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/sudo/web.php'));
+    }
+    protected function mapAdminRoutes()
+    {
+        Route::prefix('administrator')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin/web.php'));
+    }
+    protected function mapPemdesRoutes()
+    {
+        Route::prefix('pemdes')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/pemdes/web.php'));
+    }
+    protected function mapBumdesRoutes()
+    {
+        Route::prefix('bumdes')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/bumdes/web.php'));
+    }
+    protected function mapMemberRoutes()
+    {
+        Route::prefix('member')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/frontend/web.php'));
+    }
+
+
+
     /**
      * Define the "api" routes for the application.
      *
@@ -77,4 +125,6 @@ class RouteServiceProvider extends ServiceProvider
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
     }
+
+
 }
